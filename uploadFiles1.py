@@ -1,5 +1,6 @@
 import os
 import dropbox
+from dropbox.files import WriteMode
 
 
 
@@ -15,17 +16,17 @@ class Transferdata:
                 relativePath = os.path.relpath(localPath,filefrom)
                 dropboxpath = os.path.join(fileto,relativePath)
                 with open(localPath,'rb') as f:
-                    dbx.files.upload(f.read(),dropboxpath,mode = dropbox.WriteMode('overwrite'))
+                    dbx.files_upload(f.read(),dropboxpath,mode = WriteMode('overwrite'))
     
 
-    def main():
-        accesstoken = 'sl.Az_w6e5DcuZVxKAOSVfLzU17qN3IKq86jk6eKfa7i7AHzfix5xPdFxS0jspC0CufpqcPtUp11JiT8jR1EnrX0TXHoeplnRJqvyTEHQlhvHYSAYuszWqhmtIQn7HepWFAc6Nqf0A'
-        data1 = data(accesstoken)
+def main():
+    accesstoken = 'rzD0fKhc3IEAAAAAAAAAAZN-4PbhxeX_tIk68IB8EX_3tLCG61Cl19Byk-YVYFta'
+    data1 = Transferdata(accesstoken)
 
-        filefrom = input("ENTER THE FILE TO UPLOAD")
-        fileto = input("ENTER THE COMPLET DROPBOX PATH")
+    filefrom = input("ENTER THE FOLDER TO UPLOAD")
+    fileto = input("ENTER THE COMPLET DROPBOX PATH")
 
-        data1.upload_file(filefrom,fileto)
-        print("FILE UPLOADED")
+    data1.upload_file(filefrom,fileto)
+    print("FOLDER UPLOADED")
 
 main()
